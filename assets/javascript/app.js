@@ -2,59 +2,48 @@
 var gameQuestions = [
     {
         question: "What are the names of the original members of Destiny's Child?",
-        answers: {
-            a: "Beyonce, Kelly Rowland, xxxx, and xxxx",
-            b: "Beyonce Kelly Rowland, xxx",
-            c: "Beyonce, Michelle Williams, xxx, xxx"
-        },
-        correctAnswer: "a"
+        answers: ["Beyonce, Kelly Rowland, xxxx, and xxxx","Beyonce Kelly Rowland, xxx","Beyonce, Michelle Williams, xxx, xxx"
+        ],
+    
+        correctAnswer: 0
     },
     {
         question: "What is the name of the first rap group to win a grammy award?",
-        answers: {
-            a: "Run D MC",
-            b: "Salt-N Pepa",
-            c: "Jazzy Jeff and the Fresh Prince"
-        },
-        correctAnswer: "c"
+        answers: ["Run D MC", "Salt-N Pepa", "Jazzy Jeff and the Fresh Prince" ],  
+        correctAnswer: 2
     },
     {
         question: "Phife Dawg, Q-Tip, and Ali Shaheed Muhammad were members of what rap group?",
-        answers: {
-            a: "De La Soul",
-            b: "A Tribe Called Quest",
-            c: "Digital Underground"
-        },
-        correctAnswer: "b"
+        answers: [ "De La Soul", "A Tribe Called Quest", "Digital Underground"],
+        correctAnswer: 2
     },
     {
         question: "True or False. Lil Wayne, Juvenile and Mannie Fresh formed the 90's group the <em>Hot Boyz</em>.",
-        answers: {
-            a: "True",
-            b: "False",
-        },
-        correctAnswer: "b"
+        answers: ["True","False"],
+        correctAnswer: 1
     },
     {
         question: "Who is the best selling rap artist of all time?",
-        answers: {
-            a: "Eminem",
-            b: "Drake",
-            c: "Tupac Shakur"
-        },
-        correctAnswer: "a"
+        answers: ["Eminem", "Drake", "Tupac Shakur"],
+        correctAnswer: 0
     }
 ];
 
 // Add function to display game questions
 var displayQuestion = function () {
     for (var i=0; i< gameQuestions.length; i++) {
-    var triviaQuestion = "<label> " + gameQuestions[i].question + "</label>";
-    $("#game").text("<p><h2>Let's Play The Game</h2></p>");
-    // $("#game").html(triviaQuestion)  //add element for form question
-    // var triviaAnswers = $("<form-control>")    //add radio buttons
-    // $("#game").append(triviaQuestion, triviaAnswers);
-    console.log(triviaQuestion)
+    var $questionDiv = $("<div>");
+    var triviaQuestion = "<p> " + gameQuestions[i].question + "<p>";
+    var correctNum = parseInt(gameQuestions[i].correctAnswer);
+    var answer = gameQuestions[i].answers[correctNum];
+    console.log(answer);
+    $questionDiv.html(triviaQuestion);
+    setTimeout(function() {
+        alert("Time is up. The correct answer is " + answer)
+    }, 10000);
+
+    // var triviaAnswers = $('<input type="radio" name="choices" value = gameQuestions[i].answers />')   //add radio buttons
+    $("#game").prepend($questionDiv);
     // console.log("#game")
     // settimeout()
     }
