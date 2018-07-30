@@ -28,25 +28,29 @@ var gameQuestions = [
         correctAnswer: 0
     }
 ];
-
+var x = 0; //index for question
 // Add function to display game questions
 var displayQuestion = function () {
-    for (var i=0; i< gameQuestions.length; i++) {
-    var $questionDiv = $("<div>");
-    var triviaQuestion = "<p> " + gameQuestions[i].question + "<p>";
-    var correctNum = parseInt(gameQuestions[i].correctAnswer);
-    var answer = gameQuestions[i].answers[correctNum];
-    console.log(answer);
+    var choices = gameQuestions[x].answers;
+    var $questionDiv = $("#question");
+    var triviaQuestion = "<h2> " + gameQuestions[x].question + "</h2>";
+    var correctNum = parseInt(gameQuestions[x].correctAnswer);
+    var $radioBtns = $("#radioBtns");
     $questionDiv.html(triviaQuestion);
-    setTimeout(function() {
-        alert("Time is up. The correct answer is " + answer)
-    }, 10000);
+    $radioBtns.html(" ");
+    for (var i =0; i< choices.length; i++) {
+        $radioBtns.append('<label> <input type="radio" name = "answerchoices" value = "' + choices[i] + ' " />' + choices[i] + '</label></br>');
+        // $("#game").append($questionDiv);
+        // $("#game").append($radioBtns);
+    }
+    
 
+     console.log(correctAns);
     // var triviaAnswers = $('<input type="radio" name="choices" value = gameQuestions[i].answers />')   //add radio buttons
-    $("#game").prepend($questionDiv);
+    
     // console.log("#game")
     // settimeout()
-    }
+    
     
 }
 $(".btn").on("click", displayQuestion());
