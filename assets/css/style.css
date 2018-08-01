@@ -16,3 +16,8 @@ header {
     background-color: #cccccc;
     padding: 20px;
 }
+
+img {
+    width: 400px;
+    height: auto;
+}
