@@ -38,11 +38,13 @@ var gameQuestions = [
         text: "The correct answer is Eminem."
     }
 ];
+var timer;
 var x = 0; //index for question
 var correctNum = parseInt(gameQuestions[x].correctAnswer);
 var $questionDiv = $("#question");
 var $radioBtns = $("#radioBtns");
 var wrongAnswer = 0;
+var correctAnswers = 0;
 timesUp = function () {
     $(".images").html("<h4>" + gameQuestions[x].text + "</h4></br><p><img src =" + gameQuestions[x].image + "></p>")
     // alert(gameQuestions[x].text);
@@ -56,11 +58,17 @@ function nextQ () {
     $(".images").empty();
     displayQuestion();
 }
-// var timer = setTimeout(timesUp, 15 * 1000);
+function countdown () {
+     timer = setTimeout(timesUp, 5 * 1000);
+    }
+function stopTimer () {
+    clearTimeout(timer);
+}
 // Add function to display game questions
 var displayQuestion = function () {
     if (x===5) {
-        $("#game").html("<h1> Game Over <h1>")
+        $("#game").html("<h1> Game Over <h1><p> Correct Answers: " + correctAnswers)
+        $()
     }
     else {
 
@@ -70,11 +78,19 @@ var displayQuestion = function () {
     $radioBtns.html(" ");
     for (var i =0; i< choices.length; i++) {
         $radioBtns.append('<label> <input type="radio" name = "answerchoices" value = "' + i + '" /> ' + choices[i] + ' </label></br>');
-        // $("#game").append($questionDiv);
-        // $("#game").append($radioBtns);
+    
     }
 
-    setTimeout(timesUp, 5 * 1000);
+    // setTimeout(timesUp, 20 * 1000);
+    countdown ();
+    
+
+    $radioBtns.on("click", function() {
+        stopTimer();
+        var selValue = $("input[type=radio]:checked").val();
+        console.log(selValue);
+        
+    })
 
      console.log(correctNum);
      console.log(gameQuestions[x].answers[correctNum]);
