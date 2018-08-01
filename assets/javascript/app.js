@@ -40,14 +40,14 @@ var gameQuestions = [
 ];
 var timer;
 var x = 0; //index for question
-var correctNum = parseInt(gameQuestions[x].correctAnswer);
 var $questionDiv = $("#question");
 var $radioBtns = $("#radioBtns");
 var wrongAnswer = 0;
 var correctAnswers = 0;
-timesUp = function () {
-    $(".images").html("<h4>" + gameQuestions[x].text + "</h4></br><p><img src =" + gameQuestions[x].image + "></p>")
-    // alert(gameQuestions[x].text);
+var timesUp = function () {
+    
+        $(".images").html("<h4>" + gameQuestions[x].text + "</h4></br><p><img src =" + gameQuestions[x].image + "></p>")
+    
     $questionDiv.empty();
     $radioBtns.empty();
     // nextQ();
@@ -87,15 +87,33 @@ var displayQuestion = function () {
 
     $radioBtns.on("click", function() {
         stopTimer();
-        var selValue = $("input[type=radio]:checked").val();
-        console.log(selValue);
-        
+        selValue = $("input[type=radio]:checked").val();
+        correctNum = (gameQuestions[x].correctAnswer);
+        console.log("selected value " + selValue);
+        console.log("correct value " + correctNum);
+        console.log(correctNum==selValue);
     })
 
-     console.log(correctNum);
-     console.log(gameQuestions[x].answers[correctNum]);
+    $("#submitBtn").on("click", function(){
+        stopTimer();
+        if (selValue===null) {
+            alert("Please select a value");
+        }
+        else if (selValue==correctNum) {
+            correctAnswers++
+            timesUp();
+            console.log("correct answer entered "+ selValue + "=" + correctNum)
+            console.log(correctAnswers);
+        }
+        else {
+            wrongAnswer++
+            timesUp();
+        }
+    })
        
 } }
 
 // $(".btn").on("click", displayQuestion());
 $( document ).ready(displayQuestion);
+var selValue;
+var correctNum;
