@@ -42,8 +42,8 @@ var timer;
 var x = 0; //index for question
 var $questionDiv = $("#question");
 var $radioBtns = $("#radioBtns");
-var wrongAnswer = 0;
-var correctAnswers = 0;
+var wrongScore = 0;
+var correctScore = 0;
 var timesUp = function () {
     
         $(".images").html("<h4>" + gameQuestions[x].text + "</h4></br><p><img src =" + gameQuestions[x].image + "></p>")
@@ -67,23 +67,22 @@ function stopTimer () {
 // Add function to display game questions
 var displayQuestion = function () {
     if (x===5) {
-        $("#game").html("<h1> Game Over <h1><p> Correct Answers: " + correctAnswers)
-        $()
+        $("#game").html("<h1> Game Over <h1><p> You scored: " + correctScore + " out of " + gameQuestions.length);
+        
     }
-    else {
+    else { 
 
     var choices = gameQuestions[x].answers;
     var triviaQuestion = "<h2> " + gameQuestions[x].question + "</h2>";
     $questionDiv.html(triviaQuestion);
     $radioBtns.html(" ");
     for (var i =0; i< choices.length; i++) {
-        $radioBtns.append('<label> <input type="radio" name = "answerchoices" value = "' + i + '" /> ' + choices[i] + ' </label></br>');
+        $radioBtns.append('<label> <input type="radio" name = "answerchoices" value = "' + i + '" /> ' + 
+        choices[i] + ' </label></br>');
     
     }
-
-    // setTimeout(timesUp, 20 * 1000);
     countdown ();
-    
+}};
 
     $radioBtns.on("click", function() {
         stopTimer();
@@ -100,20 +99,19 @@ var displayQuestion = function () {
             alert("Please select a value");
         }
         else if (selValue==correctNum) {
-            correctAnswers++
+            correctScore++
             timesUp();
             console.log("correct answer entered "+ selValue + "=" + correctNum)
-            console.log(correctAnswers);
+            console.log(correctScore);
         }
         else {
-            wrongAnswer++
-            timesUp();
+             timesUp();
         }
-    })
+           
+        })
        
-} }
 
 // $(".btn").on("click", displayQuestion());
 $( document ).ready(displayQuestion);
-var selValue;
+var selValue=0;
 var correctNum;
