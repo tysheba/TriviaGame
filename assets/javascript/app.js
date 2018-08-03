@@ -71,6 +71,7 @@ var displayQuestion = function () {
         $radioBtns.empty();
         $questionDiv.html("<h1> Game Over <h1><p> You scored: " + correctScore + " out of " + gameQuestions.length);
         $("#playBtn").show();
+        $("#submitBtn").hide();
         
     }
     else { 
@@ -78,6 +79,7 @@ var displayQuestion = function () {
     var choices = gameQuestions[x].answers;
     var triviaQuestion = "<h2> " + gameQuestions[x].question + "</h2>";
     $("#playBtn").hide();
+    $("#submitBtn").show();
     $questionDiv.html(triviaQuestion);
     $radioBtns.html(" ");
     for (var i =0; i< choices.length; i++) {
