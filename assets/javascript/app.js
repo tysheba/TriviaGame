@@ -59,7 +59,7 @@ function nextQ () {
     displayQuestion();
 }
 function countdown () {
-     timer = setTimeout(timesUp, 5 * 1000);
+     timer = setTimeout(timesUp, 20 * 1000);
     }
 function stopTimer () {
     clearTimeout(timer);
