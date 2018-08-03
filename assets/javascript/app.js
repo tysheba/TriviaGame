@@ -67,13 +67,17 @@ function stopTimer () {
 // Add function to display game questions
 var displayQuestion = function () {
     if (x===5) {
-        $("#game").html("<h1> Game Over <h1><p> You scored: " + correctScore + " out of " + gameQuestions.length);
+        $questionDiv.empty();
+        $radioBtns.empty();
+        $questionDiv.html("<h1> Game Over <h1><p> You scored: " + correctScore + " out of " + gameQuestions.length);
+        $("#playBtn").show();
         
     }
     else { 
 
     var choices = gameQuestions[x].answers;
     var triviaQuestion = "<h2> " + gameQuestions[x].question + "</h2>";
+    $("#playBtn").hide();
     $questionDiv.html(triviaQuestion);
     $radioBtns.html(" ");
     for (var i =0; i< choices.length; i++) {
@@ -109,6 +113,10 @@ var displayQuestion = function () {
         }
            
         })
+    $("#playBtn").on("click",function() {
+        x=0;
+        displayQuestion();
+    })
        
 
 // $(".btn").on("click", displayQuestion());
