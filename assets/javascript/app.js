@@ -45,17 +45,17 @@ var $radioBtns = $("#radioBtns");
 var wrongScore = 0;
 var correctScore = 0;
 var timesUp = function () {
-    
+        $("#submitBtn").hide();
         $(".images").html("<h4>" + gameQuestions[x].text + "</h4></br><p><img src =" + gameQuestions[x].image + "></p>")
     
     $questionDiv.empty();
     $radioBtns.empty();
     // nextQ();
-    setTimeout(nextQ,3000);
+    setTimeout(nextQ,5000);
 }
 function nextQ () {
-    x++;
-    $(".images").empty();
+     $(".images").empty();
+     x++;
     displayQuestion();
 }
 function countdown () {
@@ -70,9 +70,9 @@ var displayQuestion = function () {
         $questionDiv.empty();
         $radioBtns.empty();
         $questionDiv.html("<h1> Game Over <h1><p> You scored: " + correctScore + " out of " + gameQuestions.length);
-        $("#playBtn").show();
-        $("#submitBtn").hide();
-        
+         $("#submitBtn").hide();
+         $("#playBtn").show();
+       
     }
     else { 
 
@@ -101,10 +101,7 @@ var displayQuestion = function () {
 
     $("#submitBtn").on("click", function(){
         stopTimer();
-        if (selValue===null) {
-            alert("Please select a value");
-        }
-        else if (selValue==correctNum) {
+        if (selValue==correctNum) {
             correctScore++
             timesUp();
             console.log("correct answer entered "+ selValue + "=" + correctNum)
